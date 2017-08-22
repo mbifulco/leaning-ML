@@ -1,6 +1,5 @@
 let a = 1;
 let b = 0;
-const radius = 5;
 
 const canv = document.getElementById('canv');
 const ctx = canv.getContext('2d');
@@ -29,7 +28,6 @@ const drawAxes = () => {
   ctx.stroke();
 };
 
-
 // draw a straight line according to linear function
 // y = ax + b
 const drawLinearFunction = (a, b) => {
@@ -47,7 +45,7 @@ const drawLinearFunction = (a, b) => {
   ctx.stroke();
 }
 
-const drawPoint=(point, isAboveLine) => {
+const drawPoint=(point, isAboveLine, radius = 5) => {
   ctx.beginPath();
   
   const ptX = point[0] + canv.width / 2;
@@ -108,10 +106,8 @@ const createPerceptrons = (n) => {
 };
 
 const f = (x) => {
-  return a*x + b;
+  return a * x + b;
 };
-
-
 
 const train = (p, iters, rate) => {
   for(let i = 0; i < iters; i++) {
@@ -149,16 +145,18 @@ const verify = (p) => {
 }
 
 const main = () => {
+  console.log(`started at: ${Date.now()}`);
   a = Math.random() * 11 - 6;
   b = Math.random() * 101 - 51;
   
-  const p = createPerceptrons(2);
+  const p = createPerceptrons(20);
   
-  const iterations = 1000;
+  const iterations = 100;
   const learningRate = 0.1; // allowed range 0 < learning rate <= 1
   train(p, iterations, learningRate);
   let successRate = verify(p);
   console.log(`${successRate} of the answers were correct.`);
+  console.log(`completed at: ${Date.now()}`);
 }
 
 main();
