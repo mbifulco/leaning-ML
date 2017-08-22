@@ -1,6 +1,7 @@
+![screenshot on Imgur](http://i.imgur.com/WZNUGBe.png)
+
 # What the heck is this?
 I'm teaching myself machine learning from tutorials I find on the web.  This is a node/react/javascript solution to the Perceptrons ML problem presented on [applied go](https://appliedgo.net/perceptron/).
-
 # to run:
 - This is based on `create-react-app`, so running is simple:
 1. clone repo
