@@ -1,6 +1,9 @@
 let a = 1;
 let b = 0;
 
+const numPoints = 300;
+const numIterations = 500;
+
 const canv = document.getElementById('canv');
 const ctx = canv.getContext('2d');
 
@@ -129,7 +132,7 @@ const verify = (p) => {
   drawAxes();
   drawLinearFunction();
   
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < numPoints; i++) {
     const point = [
       Math.random() * 501 - 251,
       Math.random() * 501 - 251
@@ -149,13 +152,15 @@ const main = () => {
   a = Math.random() * 11 - 6;
   b = Math.random() * 101 - 51;
   
-  const p = createPerceptrons(20);
+  const p = createPerceptrons(2);
   
-  const iterations = 100;
+  const iterations = numIterations;
   const learningRate = 0.1; // allowed range 0 < learning rate <= 1
   train(p, iterations, learningRate);
-  let successRate = verify(p);
-  console.log(`${successRate} of the answers were correct.`);
+  let successCount = verify(p);
+  const successRate = (successCount / numPoints) * 100.00;
+
+  console.log(`${successCount}, or ${successRate}% of the answers were correct.`);
   console.log(`completed at: ${Date.now()}`);
 }
 
